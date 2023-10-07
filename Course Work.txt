@@ -1,0 +1,892 @@
+import java.util.*;
+class Demo{
+		static Scanner scan=new Scanner(System.in);
+		static int mark[][]=new int[0][2];			// To store PRF & DBMS Marks
+		static String stuID[][]=new String[0][2];	// To store stuID & stuName
+		
+		public static void main(String args[]){
+		
+		while(true){
+		System.out.println("---------------------------------------------------------------------------------------\n| 			WELCOME TO GDSE MARKS MANAGEMENT SYSTEM	         	      |\n---------------------------------------------------------------------------------------");              
+		System.out.println();
+		
+		System.out.println("\n[1]  Add New Student			[2]  Add New Student With Marks\n[3]  Add Marks				[4]  Update Student Details\n[5]  Update Marks			[6]  Delete Student\n[7]  Print Student Details		[8]  Print Student Ranks\n[9]  Best in Programming Fundamental	[10] Best in Data Base Management System");
+
+		System.out.print("\nEnter an option to continue >");
+		int option=scan.nextInt();
+		
+		clearConsole();
+		
+		switch(option){
+			case 1:
+				AddNewStudent();
+				break;
+			case 2:
+				AddNewStudentwithMarks();
+				break;
+			case 3:
+				AddMarks();
+				break;
+			case 4:
+				UpdateStudentDetails();
+				break;
+			case 5:
+				UpdateMarks();
+				break;
+			case 6:
+				DeleteStudent();
+				break;
+			case 7:
+				PrintStudentDetails();
+				break;
+			case 8:
+				PrintStudentRanks();
+				break;
+			case 9:
+				BestPRF();
+				break;
+			case 10:
+				BestDMBS();
+				break;		
+			default:	
+				
+			}
+		
+		}
+	}
+	
+		public static void AddNewStudent(){		// Case 1	(add new student)
+		
+		char option='y';
+		while(option=='y'){
+			
+			System.out.println("---------------------------------------------------------------------------------------\n| 			                 Add New Student                    	      |\n---------------------------------------------------------------------------------------");              
+		
+			 
+			arraysIncrement();
+			while(true){
+				System.out.print("\n Enter your ID :");
+				stuID[stuID.length-1][0]=scan.next();
+				
+				int count=0;
+				for(int i=0; i<stuID.length-1; i++){
+					if(stuID[stuID.length-1][0].equals(stuID[i][0])){
+						count++;
+						}
+					}
+					if(count==0){
+						break;
+					}else{
+						System.out.println("The Student ID Already Exist");
+						}
+					}
+					System.out.print("Enter Student name :");
+					stuID[stuID.length-1][1]=scan.next();
+					System.out.println();
+					
+					System.out.print("Student has been added successfully. ");
+					
+					while(true){
+						System.out.print("Do you want to add new student(y/n) :");
+						option=scan.next().charAt(0);
+						
+						if(option=='y' || option=='n'){
+							break;
+							}else{
+								System.out.print("Invalid Input. Try again!");
+								}
+						}
+						clearConsole();
+				 }
+			}
+			
+			public static void AddNewStudentwithMarks(){	//case 2 (add new student with marks)
+				char option='y';
+				while(option=='y'){
+					
+					System.out.println("---------------------------------------------------------------------------------------\n| 				Add New Student with Marks         	      |\n---------------------------------------------------------------------------------------");    
+					arraysIncrement();
+					
+					while(true){
+						System.out.print("\nEnter Student ID :");
+						stuID[stuID.length-1][0]=scan.next();
+						
+						int count=0;
+						for(int i=0; i<stuID.length-1;i++){
+						if(stuID[stuID.length-1][0].equals(stuID[i][0])){
+							count++;
+							}
+						}
+						if(count==0){
+							break;
+						}else{
+							System.out.println("The student ID Already Exist!");
+							}
+						}
+					System.out.print("Enter Student name :");
+					stuID[stuID.length-1][1]=scan.next();
+					System.out.println();
+					
+					while(true){
+						System.out.print("Programmings Fundamentals Marks : ");
+						mark[mark.length-1][0]=scan.nextInt();
+						
+						if(mark[mark.length-1][0]<0 || mark[mark.length-1][0]>100){
+							System.out.println("Invalid marks, pleace enter correct marks. :");
+							}else{
+								break;
+								}
+						}
+					while(true){
+						System.out.print("Database Management System Marks : ");
+						mark[mark.length-1][1]=scan.nextInt();
+						
+						if(mark[mark.length-1][0]<0 || mark[mark.length-1][0]>100){
+							System.out.print("Invalid marks, pleace enter correct marks. :");
+							}else{
+								break;
+								}
+						System.out.println("Student has been added succuessfully.");
+						}
+					while(true){
+						System.out.print("Do you want to add a new student (y/n):");
+						option=scan.next().charAt (0);
+						
+						if(option=='y' || option=='n'){
+							break;
+						}else{
+							System.out.print("Invalid Option. Try again");
+							}
+						}
+						clearConsole();
+					}
+			}
+			
+		public static void AddMarks(){		// case 3
+			
+					System.out.println("---------------------------------------------------------------------------------------\n| 				             Add Marks                     	      |\n---------------------------------------------------------------------------------------");    
+			char option='y';
+				while(option=='y'){
+			
+					char option1='y';
+					int idNo=-1;
+						while(true){
+							System.out.print("\nEnter Student ID : ");
+							String id=scan.next();
+				
+							for(int i=0; i<stuID.length;i++){
+							if(id .equals (stuID[i][0])){
+								idNo=i;
+								}
+							}
+					
+				if(idNo==-1){
+					System.out.print("Invalid Student ID.");
+					
+					while(true){
+						System.out.print("Do you want to search again(y/n)?");
+						option1=scan.next().charAt (0);
+							
+						if(option1 =='y' ||option1 =='n'){
+							break;
+						}else{
+							System.out.print("Invalid option.");
+							}
+						}
+							
+				}else{
+					System.out.println("Student name : "+stuID[idNo][1]);
+					break;
+					}
+				if(option1 =='n'){
+				break;
+					}
+				}
+			
+			if(option1=='n'){
+				break;
+			}else if(mark[idNo][0]!=0 && mark[idNo][1]!=0){		
+				System.out.println("This student's marks have been already added.\nIf you want to update the marks, please use [5] Update marks option.\n");
+				
+				while(true){
+				System.out.print("Do you want to add marks for another student?(y/n)");
+				option=scan.next().charAt(0);
+				
+					if(option =='y' ||option =='n'){
+						break;
+					}else{
+						System.out.print("Invalid option.");
+						}
+					}
+			}else{
+				while(true){
+					System.out.print("\nProgrammingFundamentals Mark : ");
+					mark[idNo][0]=scan.nextInt();
+				
+					if(mark[idNo][0]<0 || mark[idNo][0]>100 ){
+						System.out.println("Inavlid marks. Please Enter Valid Marks.\n");
+					}else{
+						break;
+						}
+					}
+			
+				while(true){
+					System.out.print("Database Management System Mark : ");
+					mark[idNo][1]=scan.nextInt();
+				
+					if(mark[idNo][1]<0 ||mark[idNo][1]>100 ){
+						System.out.println("Inavlid marks. Please Enter correct Marks.\n");
+					}else{
+						break;
+						}
+					}
+				System.out.print("Student has been added succuessfully.. ");
+				
+				while(true){
+				System.out.print("Do you want to add marks for another student?(y/n)");
+				option=scan.next().charAt(0);
+				
+					if(option =='y' ||option =='n'){
+						break;
+					}else{
+						System.out.print("Invalid option.");
+						}
+					}
+				}					
+			}
+			
+			clearConsole();
+		}
+		public static void UpdateStudentDetails(){	//case 4
+			System.out.println("---------------------------------------------------------------------------------------\n| 				   Update Student Details      	      |\n---------------------------------------------------------------------------------------");		
+			char option='y';
+			while(option=='y'){
+				
+				int idNo=-1;
+				char option1='y';
+				
+				while(option1=='y'){
+					System.out.print("\nEnter Studen ID :");
+					String id=scan.next();
+					
+					for(int i=0; i<stuID.length; i++){
+						if(id.equals(stuID[i][0])){
+							idNo=i;
+							}
+						}
+					if(idNo==-1){
+						System.out.print("Invalid Student ID.");
+							
+							while(true){
+								System.out.print("Do you want to search again(y/n)?");
+								option1=scan.next().charAt(0);
+								
+								if(option1=='y' || option1=='n'){
+									break;
+									
+								}else{
+									System.out.print("Invalid option.");
+									}
+							}
+					}else{
+						System.out.println("Student name: "+stuID[idNo][1]);
+						break;
+						}
+					}
+					if(option1=='n'){
+						break;
+					}
+					
+					System.out.print("Enter new student name :");
+					stuID[idNo][1]=scan.next();
+					
+					System.out.print("Student details has been updated successfully.");
+					
+					while(true){
+						System.out.print("Do you want to update another student details?(y/n)");
+						option=scan.next().charAt(0);
+						
+						if(option=='y' || option=='n'){
+							break;
+							}else{
+								System.out.print("Invalid option.");
+								}
+						}
+							
+					}
+				clearConsole();
+			
+			}
+		public static void UpdateMarks(){	//case 5
+					System.out.println("---------------------------------------------------------------------------------------\n| 				   Update Marks     	      |\n---------------------------------------------------------------------------------------");		
+			char option='y';
+			while(option=='y'){
+				
+				int idNo=-1;
+				
+				char option1='y';
+				while(option1=='y'){
+					System.out.print("\nEnter Studen ID :");
+					String id=scan.next();
+					
+					for(int i=0; i<stuID.length; i++){
+						if(id.equals(stuID[i][0])){
+							idNo=i;
+							}
+						}
+					if(idNo==-1){
+						System.out.print("Invalid Student ID");
+							
+							while(true){
+								System.out.print("Do you want to search again(y/n)?");
+								option1=scan.next().charAt(0);
+								
+								if(option1=='y' || option1=='n'){
+									break;
+									
+								}else{
+									System.out.print("Invalid option.");
+									}
+							}
+							}else if(mark[idNo][0]==0 && mark[idNo][1]==0){
+								System.out.print("This student marks yet to be added.");	
+					
+					while(true){
+						System.out.print("Do you want to search again(y/n)?");
+						option1=scan.next().charAt (0);
+							
+						if(option1 =='y' ||option1 =='n'){
+							break;
+						}else{
+							System.out.print("Invalid option.");
+							}
+						}	
+					}else{
+						System.out.println("Student name: "+stuID[idNo][1]);
+						System.out.println();
+						System.out.println("Progaraming Fundamentals marks: "+mark[idNo][0]);
+						System.out.println("Database Management system marks: "+mark[idNo][1]);
+						System.out.println();
+						break;
+						}
+					}
+					if(option1=='n'){
+						break;
+					}
+				while(true){
+					System.out.print("Enter your new programing marks :");
+					mark[idNo][0]=scan.nextInt();
+					if(mark[idNo][1]<0 ||mark[idNo][1]>100){
+						System.out.println("Invalid marks, Pleace Enter Valid Marks.");
+					}else{
+						break;
+					}
+				}
+				while(true){
+					System.out.print("Enter your new DBMS marks.");
+					mark[idNo][1]=scan.nextInt();
+					if(mark[idNo][1]<0 ||mark[idNo][1]>100){
+						System.out.println("Invalid marks, Pleace Enter Valid Marks.");
+					}else{
+						break;
+						}
+				}
+					System.out.print("Marks have been updated successfully");
+					
+					while(true){
+						System.out.print("Do you want to update another student details(y/n)");
+						option=scan.next().charAt(0);
+						
+						if(option=='y' || option=='n'){
+							break;
+							}else{
+								System.out.print("Invalid option.");
+								}
+						}
+							
+					}
+				clearConsole();
+			
+			}
+		public static void DeleteStudent(){	//	case 6
+					System.out.println("---------------------------------------------------------------------------------------\n| 				Delete Student       	      |\n---------------------------------------------------------------------------------------");		
+			char option='y';
+			while(option=='y'){
+				
+				int idNo=-1;
+				
+					System.out.print("\nEnter Studen ID,:");
+					String id=scan.next();
+					
+					for(int i=0; i<stuID.length; i++){
+						if(id.equals(stuID[i][0])){
+							idNo=i;
+							}
+						}
+					
+					if(idNo==-1){
+						System.out.print("Invalid Student ID.");
+							
+						while(true){
+							System.out.print("Do you want to search again(y/n)?");
+							option=scan.next().charAt (0);
+							
+						if(option =='y' ||option =='n'){
+							break;
+						}else{
+							System.out.print("Invalid option.");
+						}
+					}
+				}else{
+				String[][] tempStuID=new String[stuID.length][2];
+				int[][] tempMark=new int[stuID.length][2];
+			
+				for(int i=0; i<stuID.length;i++){
+					for(int j=0; j<stuID[i].length;j++){
+						if(idNo!=i){
+							tempStuID[i][j]=stuID[i][j];
+							tempMark[i][j]=mark[i][j];
+							}
+						
+						}
+					}
+				stuID=tempStuID;
+				mark=tempMark;
+				
+				System.out.println("Student has been deleted successfully");		
+				
+				while(true){
+						System.out.print("Do you want to update another student details(y/n)");
+						option=scan.next().charAt(0);
+						
+						if(option=='y' || option=='n'){
+							break;
+							}else{
+								System.out.print("Invalid option.");
+								}
+							}
+						}
+					}
+					clearConsole();
+			}
+			
+			public static void PrintStudentDetails(){	//	case 7
+
+					System.out.println("---------------------------------------------------------------------------------------\n| 				Print Student Details       	      |\n---------------------------------------------------------------------------------------");		
+			char option='y';
+			while(option=='y'){
+				
+				int idNo=-1;
+				
+					System.out.print("\nEnter Studen ID,:");
+					String id=scan.next();
+					
+					for(int i=0; i<stuID.length; i++){
+						if(id.equals(stuID[i][0])){
+							idNo=i;
+							}
+						}
+					
+					if(idNo==-1){
+						System.out.print("Invalid Student ID.");
+							
+						while(true){
+							System.out.print("Do you want to search again(y/n)?");
+							option=scan.next().charAt (0);
+							
+						if(option =='y' ||option =='n'){
+							break;
+						}else{
+							System.out.print("Invalid option.");
+						}
+					}	
+				}else{
+					System.out.println("Student Name :" +stuID[idNo][1]);
+					
+					if(mark[idNo][0]==0 && mark[idNo][1]==0){
+						System.out.println("Marks yet to be added.");
+					}else{
+						System.out.println("+------------------------------+----------------+");
+						System.out.println("|Programming Fundamnetal Marks |              "+mark[idNo][0]+"|");
+						System.out.println("|Database Management System    |              "+mark[idNo][1]+"|");
+						
+						int []tot=total();
+						System.out.println("|Total Marks                   |             "+tot[idNo]+"|");
+						
+						double []avg=average();
+						System.out.println("|Avg. Marks                    |            "+avg[idNo]+"|");
+						
+						String rank=rankPosition(idNo);
+						System.out.println("|Rank                          |"+(rankPosition(idNo))+"|");
+						
+						System.out.println("+------------------------------+----------------+");
+						}	
+						while(true){
+							System.out.print("Do you want to search another student details(y/n)?");
+							option=scan.next().charAt (0);
+							
+							if(option =='y' ||option =='n'){
+								break;
+							}else{
+								System.out.print("Invalid option.");
+							}
+						}
+					}
+			clearConsole();	
+		}
+	}
+	
+	public static void PrintStudentRanks(){		//	case 8
+		System.out.println("---------------------------------------------------------------------------------------\n| 			Print Student Ranks	      	      |\n---------------------------------------------------------------------------------------");		
+		System.out.println();
+		
+		System.out.println("+--------+-----+------------------+--------------+-------------+");
+		System.out.println("|Rank    |ID   |Name              |Total Marks   |Avg. Marks   |");
+		System.out.println("+--------+-----+------------------+--------------+-------------+");
+		
+		double[] desc=descending();
+		int[] tot =totalDesc();
+		String[][] tempStuID=stuIdDescending();
+		
+		for(int i=0; i<desc.length;i++){
+			if(desc[i]!=0){
+				
+				System.out.println("|"+(i+1)+"       |"+tempStuID[i][0]+" |"+tempStuID[i][1]+"             |           "+tot[i]+"|         "+desc[i]+"|");
+				}
+			}
+		
+		System.out.println("+--------+-----+------------------+--------------+-------------+");
+		
+		char option='y';
+		while(true){
+			System.out.print("Do you want to go back to main menu(y/n)?");
+			option=scan.next().charAt (0);
+					
+			if(option =='y'){
+				break;
+			}else if(option =='n'){
+				System.out.println();
+			}else{
+				System.out.print("Invalid option.");
+				}
+			}
+		
+		if(option =='y'){
+			clearConsole();
+			}
+		
+		}
+		
+		public static void BestPRF(){	// case 9
+		
+		System.out.println("---------------------------------------------------------------------------------------\n| 			Best in Programming Fundamentals      	      |\n---------------------------------------------------------------------------------------");		
+		System.out.println();
+		
+		System.out.println("+-----+------------------+--------------+-------------+");
+		System.out.println("|ID   |Name              |PRF Marks     |DBMS Marks   |");
+		System.out.println("+-----+------------------+--------------+-------------+");
+		
+		int[][] desc=PRFDescending();
+		
+		String[][] tempStuID=stuIdDescending();
+		
+		for(int i=0; i<desc.length;i++){
+			if(desc[i][0]!=0 && desc[i][1]!=0){
+				
+				System.out.println("|"+tempStuID[i][0]+" |"+tempStuID[i][1]+"             |"+desc[i][0]+"            |"+desc[i][1]+"           |");
+				}
+			}
+		
+		System.out.println("+-----+------------------+--------------+-------------+");
+		
+		char option='y';
+		while(true){
+			System.out.print("Do you want to go back to main menu(y/n)?");
+			option=scan.next().charAt (0);
+					
+			if(option =='y'){
+				break;
+			}else if(option =='n'){
+				System.out.println();
+			}else{
+				System.out.print("Invalid option.");
+				}
+			}
+		
+		if(option =='y'){
+			clearConsole();
+			}
+		}
+		
+		public static void BestDMBS(){  // case 10
+		
+		System.out.println("---------------------------------------------------------------------------------------\n| 			Best in Database Management System       	      |\n---------------------------------------------------------------------------------------");		
+		System.out.println();
+		
+		System.out.println("+-----+------------------+--------------+-------------+");
+		System.out.println("|ID   |Name              |DBMS Marks    |PRF Marks    |");
+		System.out.println("+-----+------------------+--------------+-------------+");
+		
+		int[][] desc=DBMSDescending();
+		
+		String[][] tempStuID=stuIdDescending();
+		
+		for(int i=0; i<desc.length;i++){
+			if(desc[i][0]!=0 && desc[i][1]!=0){
+				
+				System.out.println("|"+tempStuID[i][0]+" |"+tempStuID[i][1]+"             |"+desc[i][1]+"            |"+desc[i][0]+"           |");
+				}
+			}
+		
+		System.out.println("+-----+------------------+--------------+-------------+");
+		
+		char option='y';
+		while(true){
+			System.out.print("Do you want to go back to main menu(y/n)?");
+			option=scan.next().charAt (0);
+					
+			if(option =='y'){
+				break;
+			}else if(option =='n'){
+				System.out.println();
+			}else{
+				System.out.print("Invalid option.");
+				}
+			}
+		
+		if(option =='y'){
+			clearConsole();
+			}
+		}
+	
+		public static int[] total(){ // get total 
+			
+			int tot[]= new int [mark.length];
+			
+			for(int i=0; i<tot.length;i++){
+				tot[i]=mark[i][0]+mark[i][1];
+				}
+				return tot;
+			}
+			
+		public static double []average(){		// finding average in total of marks
+			int []tot=total();
+			double []avg= new double [mark.length];
+			
+			for(int i=0; i<avg.length;i++){
+				avg[i]=(double)tot[i]/2;
+				} 
+				return avg;
+			}
+		
+		public static double[] descending(){	//arrange the average marks descending order from avg
+		double[] desc= average();
+			
+		for(int i=0;i<desc.length-1;i++){
+			for(int j=0;j<desc.length-1;j++){
+				if(desc[j]<desc[j+1]){
+					double temp = desc[j];
+					desc[j]=desc[j+1];
+					desc[j+1]=temp;
+					}
+				}
+			}
+			
+		return desc;
+		}
+				
+			
+		public static String rankPosition(int index){	// to get stuID from rank
+			double [] desc=descending();
+			double [] avg=average();
+			
+			int rankNo=0;
+			
+			
+			for(int i=0; i<desc.length;i++){
+				if(avg[index]==desc[i]){
+				rankNo=i+1;
+				}
+			}
+			String rank="null";
+			
+			if(desc[desc.length-1]==avg[index]){
+				rank="			"+rankNo+"(Last)";
+				}else{
+					switch(rankNo){
+						case 1:
+							rank="        "+rankNo+"(First)";
+							break;
+						case 2:
+							rank="       "+rankNo+"(Second)";
+							break;
+						case 3:
+							rank="        "+rankNo+"(Third)";
+							break;
+						default :
+							rank="      "+rankNo+"("+rankNo+"th)";
+						}
+					}
+				return rank;
+			}
+			
+		public static int[]totalDesc() { // total array in descneding order
+		
+			int tot[] = total();
+		
+			for(int i=0;i<tot.length-1;i++){
+				for(int j=0;j<tot.length-1;j++){
+					if(tot[j]<tot[j+1]){
+						int temp = tot[j];
+						tot[j]=tot[j+1];
+						tot[j+1]=temp;
+						}
+					}
+				}
+			return tot;
+		}
+		
+		public static String[][] stuIdDescending(){  //the stuID descending order according to avg
+		double[] desc =descending();
+		double[] avg=average();
+		String[][] tempStuID=new String[desc.length][2];
+			
+		for (int i = 0; i < desc.length; i++){
+			for(int j = 0; j < avg.length; j++){
+				if(desc[i]==avg[j]){
+					tempStuID[i][0]=stuID[j][0];
+					tempStuID[i][1]=stuID[j][1];
+					}
+					
+				}
+			}
+			return tempStuID;
+		}
+	
+		public static int[][] PRFDescending(){	//marks descending order according to PRF marks
+		int[][] desc= new int[mark.length][2];
+		
+		for(int i=0; i<desc.length;i++){
+			desc[i][0]=mark[i][0];
+			}
+		
+		for(int i=0;i<desc.length-1;i++){
+			for(int j=0;j<desc.length-1;j++){
+				if(desc[j][0]<desc[j+1][0]){
+					int temp = desc[j][0];
+					desc[j][0]=desc[j+1][0];
+					desc[j+1][0]=temp;
+					}
+				}
+			}
+			
+		for (int i = 0; i < desc.length; i++){
+			for(int j = 0; j < desc.length; j++){
+				if(desc[i][0]==mark[j][0]){
+					desc[i][1]=mark[j][1];
+					}
+					
+				}
+			}
+			
+		return desc;
+		}	
+		
+		public static int[][] DBMSDescending(){	//marks descending order according to DBMS marks
+		int[][] desc= new int[mark.length][2];
+		
+		for(int i=0; i<desc.length;i++){
+			desc[i][1]=mark[i][1];
+			}
+		
+		for(int i=0;i<desc.length-1;i++){
+			for(int j=0;j<desc.length-1;j++){
+				if(desc[j][1]<desc[j+1][1]){
+					int temp = desc[j][1];
+					desc[j][1]=desc[j+1][1];
+					desc[j+1][1]=temp;
+					}
+				}
+			}
+		for (int i = 0; i < desc.length; i++){
+			for(int j = 0; j < desc.length; j++){
+				if(desc[i][1]==mark[j][1]){
+					desc[i][0]=mark[j][0];
+					}
+					
+				}
+			}
+			
+		return desc;
+		}
+		
+		public static String[][] SIDDescendingPRF(){	//arrange SID descending order according to PRF marks
+		int[][] desc=PRFDescending();
+		String[][] tempStuID=new String[desc.length][2];
+			
+		for (int i = 0; i < desc.length; i++){
+			for(int j = 0; j < desc.length; j++){
+				if(desc[i][0]==mark[j][0]){
+					tempStuID[i][0]=stuID[j][0];
+					tempStuID[i][1]=stuID[j][1];
+					}
+					
+				}
+			}
+			return tempStuID;
+		}
+		
+		public static String[][] SIDDescendingDBMS(){	//arrange SID descending order according to DBMS marks
+		int[][] desc=DBMSDescending();
+		String[][] tempStuID=new String[desc.length][2];
+			
+		for (int i = 0; i < desc.length; i++){
+			for(int j = 0; j < desc.length; j++){
+				if(desc[i][1]==mark[j][1]){
+					tempStuID[i][0]=stuID[j][0];
+					tempStuID[i][1]=stuID[j][1];
+					}
+					
+				}
+			}
+			return tempStuID;
+		}
+					
+		public final static void clearConsole() { //method to clear diplaying iteams
+		try {
+			final String os = System.getProperty("os.name"); 
+			if (os.contains("Windows")) {
+				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+			} else {
+				System.out.print("\033[H\033[2J"); 
+				System.out.flush();
+				}
+			} catch (final Exception e) {
+			e.printStackTrace();
+			// Handle any exceptions.
+			}
+		}
+		
+		
+		public static void arraysIncrement(){ 		// array Increment
+		String[][] tempStuID=new String[stuID.length+1][2];
+		int[][] tempMark=new int[stuID.length+1][2];
+			
+		for(int i=0; i<stuID.length;i++){
+			for(int j=0; j<stuID[i].length;j++){
+			tempStuID[i][j]=stuID[i][j];
+			tempMark[i][j]=mark[i][j];
+			
+			
+			
+			}
+		}
+		stuID=tempStuID;
+			mark=tempMark;		
+	}
+		 
+}
+
+
+
+
